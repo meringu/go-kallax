@@ -295,7 +295,6 @@ func (q *BaseQuery) ToSql() (string, []interface{}, error) {
 type ColumnOrder interface {
 	// ToSql returns the SQL representation of the column with its order.
 	ToSql(Schema) string
-	isColumnOrder()
 }
 
 type colOrder struct {
@@ -307,7 +306,6 @@ type colOrder struct {
 func (o *colOrder) ToSql(schema Schema) string {
 	return fmt.Sprintf("%s %s", o.col.QualifiedName(schema), o.order)
 }
-func (colOrder) isColumnOrder() {}
 
 const (
 	asc  = "ASC"
